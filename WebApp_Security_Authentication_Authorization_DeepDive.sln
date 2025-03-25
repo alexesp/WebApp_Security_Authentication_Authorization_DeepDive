@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_Security_Authentication_Authorization_DeepDive", "WebApp_Security_Authentication_Authorization_DeepDive\WebApp_Security_Authentication_Authorization_DeepDive.csproj", "{78D06FE7-9DE7-4BB3-838F-4371E9BDF551}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationAuthorizationDeepDive", "WebApp_Security_Authentication_Authorization_DeepDive\AuthenticationAuthorizationDeepDive.csproj", "{78D06FE7-9DE7-4BB3-838F-4371E9BDF551}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
