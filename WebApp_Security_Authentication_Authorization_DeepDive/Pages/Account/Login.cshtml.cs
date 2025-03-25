@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,12 +15,34 @@ namespace WebApp_Security_Authentication_Authorization_DeepDive.Pages.Account
         public void OnGet()
         {
         }
+
+        public void OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
+            //Verify the credential
+            if (Credential.Name == "admin" && Credential.Password == "/123-*")
+            {
+                //Creatin the security context
+                var claims = new List<Claim>
+                { new Claim (ClaimTypes.Name, "admin"),
+                  new Claim (ClaimTypes.Email, "admin@website.com")
+                };
+                var identity = new ClaimsIdentity(claims, "MyCookieAtuth"); 
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
+
+
+                HttpContext.SignInAsync(claimsPrincipal);
+            }
+        }
     }
 
     public class Credential
     {
         [Required]
-        [Display(Description ="User Name")]
+        [Display(Name = "User Name")]
         public string Name { get; set; } = string.Empty;
         [Required]
         [DataType(DataType.Password)]
