@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,11 +17,11 @@ namespace WebApp_Security_Authentication_Authorization_DeepDive.Pages.Account
         {
         }
 
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return;
+                return Page();
             }
             //Verify the credential
             if (Credential.Name == "admin" && Credential.Password == "/123-*")
@@ -30,12 +31,15 @@ namespace WebApp_Security_Authentication_Authorization_DeepDive.Pages.Account
                 { new Claim (ClaimTypes.Name, "admin"),
                   new Claim (ClaimTypes.Email, "admin@website.com")
                 };
-                var identity = new ClaimsIdentity(claims, "MyCookieAtuth"); 
+                var identity = new ClaimsIdentity(claims, "MyCookieAuth"); 
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
 
-                HttpContext.SignInAsync(claimsPrincipal);
+               await HttpContext.SignInAsync("MyCookieAuth", claimsPrincipal);
+
+                return RedirectToPage("/Index");
             }
+            return Page();
         }
     }
 
