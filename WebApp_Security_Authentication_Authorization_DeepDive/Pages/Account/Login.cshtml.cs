@@ -29,7 +29,11 @@ namespace WebApp_Security_Authentication_Authorization_DeepDive.Pages.Account
                 //Creatin the security context
                 var claims = new List<Claim>
                 { new Claim (ClaimTypes.Name, "admin"),
-                  new Claim (ClaimTypes.Email, "admin@website.com")
+                  new Claim (ClaimTypes.Email, "admin@website.com"),
+                  new Claim ("Department", "HR"),
+                  new Claim ("Admin", "true"),
+                  new Claim ("Manager", "true"),
+                  new Claim("EmploymentDate", "2024-12-01")
                 };
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth"); 
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
