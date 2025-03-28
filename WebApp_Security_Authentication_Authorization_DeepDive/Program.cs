@@ -10,6 +10,7 @@ builder.Services.AddSingleton<IAuthorizationHandler, HRMaganerProbationRequireme
 builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
 {
     options.Cookie.Name = "MyCookieAuth";
+    options.ExpireTimeSpan = TimeSpan.FromSeconds(20);
    // options.AccessDeniedPath = "/";
 });
 
